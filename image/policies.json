@@ -1,0 +1,21 @@
+{
+  "policies": {
+    "ExtensionSettings": {
+      "ticketbooth@ticketbooth": {
+        "installation_mode": "force_installed",
+        "install_url": "file:///opt/ticketbooth/ticketbooth.xpi",
+        "default_area": "navbar"
+      }
+    },
+    "Preferences": {
+      "xpinstall.signatures.required": { "Value": false, "Status": "locked" },
+      "privacy.reduceTimerPrecision": { "Value": false, "Status": "locked" }
+    },
+    "DisableAppUpdate": true,
+    "DisableTelemetry": true,
+    "DontCheckDefaultBrowser": true,
+    "OverrideFirstRunPage": "",
+    "OverridePostUpdatePage": "",
+    "UserMessaging": { "SkipOnboarding": true }
+  }
+}

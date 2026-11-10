@@ -1,0 +1,29 @@
+[tools]
+actionlint = "1.7.12"
+hadolint = "2.15.1"
+node = "26.13.0"
+"npm:web-ext" = "10.8.0"
+shellcheck = "0.11.0"
+
+[tasks.build]
+description = "Build the container image"
+run = 'docker build --build-arg "EXTENSION_VERSION=0.$(date -u +%Y%m%d).$(( $(date +%s) % 86400 ))" -t ticketbooth .'
+
+[tasks.run]
+description = "Run the image, serving noVNC on http://localhost:8080"
+depends = ["build"]
+run = """
+docker run --rm --name ticketbooth --shm-size=2g \
+  -p 127.0.0.1:8080:8080 -v ticketbooth-data:/data \
+  -e TZ -e TARGET_URL -e TARGET_TIME -e LEAD_MS -e VNC_PASSWORD \
+  ticketbooth
+"""
+
+[tasks.lint]
+description = "Lint the extension, shell script, Dockerfile and workflow"
+run = [
+  "web-ext lint --source-dir extension",
+  "shellcheck image/entrypoint.sh",
+  "hadolint Dockerfile",
+  "actionlint",
+]
