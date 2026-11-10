@@ -2,6 +2,8 @@
 
 <img src="extension/icon.svg" alt="" width="96" align="right" />
 
+[![Build](https://github.com/bo0tzz/ticketbooth/actions/workflows/build.yml/badge.svg)](https://github.com/bo0tzz/ticketbooth/actions/workflows/build.yml)
+
 ticketbooth is Firefox in a container. You use it in your browser through noVNC. An extension in it reloads a tab so that the request reaches the server at an exact moment.
 
 It is for pages that open at a known time, for example a ticket sale that starts at 10:00:00.
@@ -19,7 +21,7 @@ docker run --rm --shm-size=2g \
   -p 127.0.0.1:8080:8080 \
   -v ticketbooth-data:/data \
   -e TZ=Europe/Amsterdam \
-  ghcr.io/<owner>/ticketbooth
+  ghcr.io/bo0tzz/ticketbooth
 ```
 
 Then open <http://localhost:8080>.
@@ -57,7 +59,7 @@ docker run --rm --shm-size=2g -p 127.0.0.1:8080:8080 -v ticketbooth-data:/data \
   -e TARGET_URL=https://example.com/sale \
   -e TARGET_TIME=2026-12-01T10:00:00+01:00 \
   -e LEAD_MS=0 \
-  ghcr.io/<owner>/ticketbooth
+  ghcr.io/bo0tzz/ticketbooth
 ```
 
 ## Usage
